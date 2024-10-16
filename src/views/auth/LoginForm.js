@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/config.js'; // Adjust the path to the config file
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import logo from '../../assets/img/logo.png'; // Adjust the path to the logo image
@@ -64,6 +65,12 @@ const LoginForm = () => {
             Inicia Sesión
           </button>
         </form>
+        <p className="text-center text-sm mt-4">
+          ¿No tienes cuenta?{' '}
+          <Link to="/signup" className="text-purple-600">
+            Regístrate
+          </Link>
+        </p>
       </div>
     </div>
   );
