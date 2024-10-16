@@ -63,7 +63,7 @@ const SignupForm = () => {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              placeholder="Nombre completo"
+              placeholder="Nombre"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-purple-600"
               required
             />
@@ -73,7 +73,7 @@ const SignupForm = () => {
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Apellido"
+              placeholder="Apellidos"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-purple-600"
               required
             />
