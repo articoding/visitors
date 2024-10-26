@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { auth } from '../../firebase/config.js'; // Adjust the path to the config file
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import logo from '../../assets/img/logo.png'; // Adjust the path to the logo image
@@ -9,12 +9,16 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Initialize navigate hook
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('User logged in successfully');
-      // Redirect or navigate to the dashboard here
+      // Redirect to the dashboard page
+      navigate('/admin/dashboard');
     } catch (error) {
       setError('Invalid email or password');
       console.error('Login error:', error);

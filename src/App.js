@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './views/auth/LoginForm'; // Adjusted path to the LoginForm
 import SignupForm from './views/auth/SignUpForm';
+import Dashboard from './views/admin/Dashboard';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} /> {/* Add Dashboard route */}
         {/* Add other routes like Dashboard or other views */}
       </Routes>
     </Router>
