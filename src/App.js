@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './views/auth/LoginForm'; // Adjusted path to the LoginForm
 import SignupForm from './views/auth/SignUpForm';
 import Dashboard from './views/admin/Dashboard';
+import './index.css'; // Make sure to import the CSS file where the font is defined
+
 
 function App() {
   return (
