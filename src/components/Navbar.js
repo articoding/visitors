@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 import logo from '../assets/img/logo.png';
 
 const Navbar = () => {
+  // Get the current path using the useLocation hook
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <nav className="bg-white shadow-md py-4 px-10 flex justify-between items-center">
       {/* Left section: Logo */}
@@ -19,17 +23,32 @@ const Navbar = () => {
         {/* Navigation Links */}
         <ul className="flex space-x-12 ml-auto">
           <li>
-            <Link to="/admin/dashboard" className="text-purple-600 font-semibold">
+            <Link
+              to="/admin/dashboard"
+              className={`${
+                currentPath === '/admin/dashboard' ? 'text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600'
+              }`}
+            >
               Panel
             </Link>
           </li>
           <li>
-            <Link to="/admin/practicantes" className="text-gray-600 hover:text-purple-600">
+            <Link
+              to="/admin/practicantes"
+              className={`${
+                currentPath === '/admin/practicantes' ? 'text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600'
+              }`}
+            >
               Practicantes
             </Link>
           </li>
           <li>
-            <Link to="/admin/visitantes" className="text-gray-600 hover:text-purple-600">
+            <Link
+              to="/admin/visitantes"
+              className={`${
+                currentPath === '/admin/visitantes' ? 'text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600'
+              }`}
+            >
               Visitantes
             </Link>
           </li>
