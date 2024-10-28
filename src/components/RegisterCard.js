@@ -12,7 +12,7 @@ const RegisterCard = ({ icon, label, onClick, iconColor = 'text-purple-600' }) =
       {/* Button Section */}
       <button
         onClick={onClick}
-        className="bg-green-100 text-green-700 py-2 px-5 rounded-lg font-semibold hover:bg-green-200"
+        className="bg-[#C16FD1] text-white py-2 px-5 rounded-lg font-bold hover:bg-[#E1B8E9]"
       >
         {label}
       </button>
