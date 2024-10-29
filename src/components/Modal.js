@@ -1,9 +1,15 @@
-import React from 'react';
-import RegisterCard from './RegisterCard';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import VisitorForm from './forms/VisitorForm';
+import InternForm from './forms/InternForm';
 
 const Modal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null; // If modal is not open, don't render it
+  const [activeForm, setActiveForm] = useState(null);
+
+  if (!isOpen) return null;
+
+  const handleBack = () => setActiveForm(null);
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
@@ -16,23 +22,52 @@ const Modal = ({ isOpen, onClose }) => {
           &times;
         </button>
 
-        <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Registrar</h2>
-        
-        {/* Register Cards */}
-        <div className="flex justify-around space-x-6">
-          <RegisterCard
-            icon={faBriefcase}
-            label="Visitante Externo"
-            onClick={() => console.log('Registrar Visita')}
-            iconColor="text-[#671E75]" // Changes the icon color to red
-            />
-          <RegisterCard
-            icon={faGraduationCap}
-            label="Practicante Administrativo"
-            onClick={() => console.log('Registrar Práctica')}
-            iconColor="text-[#671E75]" // Changes the icon color to red
-          />
-        </div>
+        {/* Header */}
+        <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
+          {activeForm ? (
+            activeForm === 'visitor' ? 'Registra un nuevo visitante' : 'Registra un nuevo practicante administrativo'
+          ) : (
+            'Registrar'
+          )}
+        </h2>
+
+        {/* Content */}
+        {activeForm ? (
+          <>
+            <button
+              className="text-sm text-purple-600 mb-4"
+              onClick={handleBack}
+            >
+              ← Volver
+            </button>
+            {/* Render the selected form */}
+            {activeForm === 'visitor' ? (
+              <VisitorForm />
+            ) : (
+              <InternForm />
+            )}
+          </>
+        ) : (
+          <div className="flex flex-col items-center space-y-4">
+            {/* Visitor Button with Icon */}
+            <button
+              className="flex items-center justify-center bg-[#671E75] text-white py-3 px-5 rounded-lg font-semibold w-full space-x-2"
+              onClick={() => setActiveForm('visitor')}
+            >
+              <FontAwesomeIcon icon={faBriefcase} className="text-2xl" />
+              <span>Visitante Externo</span>
+            </button>
+
+            {/* Intern Button with Icon */}
+            <button
+              className="flex items-center justify-center bg-[#671E75] text-white py-3 px-5 rounded-lg font-semibold w-full space-x-2"
+              onClick={() => setActiveForm('intern')}
+            >
+              <FontAwesomeIcon icon={faGraduationCap} className="text-2xl" />
+              <span>Practicante Administrativo</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
