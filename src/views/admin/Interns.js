@@ -15,6 +15,7 @@ const Practicantes = () => {
         id: doc.id,
         ...doc.data(),
       }));
+      console.log("Fetched practicantes:", data); // Debugging line
       setPracticantes(data);
       setLoading(false);
     } catch (error) {
@@ -65,8 +66,10 @@ const Practicantes = () => {
               className="bg-white rounded-lg shadow-md p-6 space-y-4"
             >
               <div className="flex items-center">
+                {/* Debugging Image Source */}
+                {console.log("Profile Photo URL:", practicante.photoUrl)}
                 <img
-                  src={practicante.photoUrl || 'https://via.placeholder.com/150'} // Placeholder image if no URL
+                  src={practicante.profilePhotoUrl || 'https://via.placeholder.com/150'} // Placeholder image if no URL
                   alt={practicante.name}
                   className="h-24 w-24 rounded-full object-cover mr-4"
                 />
