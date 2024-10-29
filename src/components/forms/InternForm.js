@@ -57,10 +57,10 @@ const InternForm = () => {
         profilePhotoUrl, // Store the photo URL in Firestore
       });
 
-      alert('Intern registered successfully!');
+      alert('Practicante registrado con éxito');
     } catch (error) {
-      console.error("Error adding intern: ", error);
-      alert('Failed to register intern');
+      console.error("Error al registrar un practicante ", error);
+      alert('Ocurrió un error al añadir al practicante');
     }
   };
 

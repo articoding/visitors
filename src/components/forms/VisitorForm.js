@@ -36,10 +36,10 @@ const VisitorForm = () => {
     try {
       const visitorsCollection = collection(db, 'visitors');
       await addDoc(visitorsCollection, formData);
-      alert('Visitor registered successfully!');
+      alert('Visitante registrado con éxito');
     } catch (error) {
-      console.error("Error adding visitor: ", error);
-      alert('Failed to register visitor');
+      console.error("Error al registrar un visitante: ", error);
+      alert('Ocurrió un error al registrar un visitante');
     }
   };
 
