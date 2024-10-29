@@ -10,7 +10,7 @@ const Practicantes = () => {
   // Fetch Practicantes data from Firestore
   const fetchPracticantes = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'practicantes')); // Adjust collection name if needed
+      const querySnapshot = await getDocs(collection(db, 'interns')); // Adjusted to fetch from 'interns' collection
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -71,8 +71,8 @@ const Practicantes = () => {
                   className="h-24 w-24 rounded-full object-cover mr-4"
                 />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800">{practicante.name}</h2>
-                  <span className="text-gray-500">{practicante.department}</span>
+                  <h2 className="text-xl font-bold text-gray-800">{practicante.name || 'Nombre no disponible'}</h2>
+                  <span className="text-gray-500">{practicante.department || 'Departamento no especificado'}</span>
                   <div className="mt-2">
                     <span
                       className={`px-2 py-1 rounded-full text-sm ${
@@ -81,7 +81,7 @@ const Practicantes = () => {
                           : 'bg-yellow-100 text-yellow-700'
                       }`}
                     >
-                      {practicante.status}
+                      {practicante.status || 'Estado desconocido'}
                     </span>
                   </div>
                 </div>
@@ -89,7 +89,7 @@ const Practicantes = () => {
               <div>
                 <p className="text-gray-600">
                   Fecha de {practicante.status === 'Entrada registrada' ? 'entrada' : 'salida'}:{' '}
-                  <span className="font-semibold">{practicante.date}</span>
+                  <span className="font-semibold">{practicante.date || 'Fecha no disponible'}</span>
                 </p>
               </div>
               <div className="flex justify-between items-center">

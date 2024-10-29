@@ -10,7 +10,7 @@ const Visitantes = () => {
   // Fetch Visitantes data from Firestore
   const fetchVisitantes = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'visitantes')); // Adjust collection name if needed
+      const querySnapshot = await getDocs(collection(db, 'visitors')); // Updated to fetch from the 'visitors' collection
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -67,7 +67,7 @@ const Visitantes = () => {
               <div>
                 <span className="text-gray-500">Visitante</span>
                 <div className="mt-2">
-                  <h2 className="text-xl font-bold text-gray-800">{visitante.name}</h2>
+                  <h2 className="text-xl font-bold text-gray-800">{visitante.name || 'Nombre no disponible'}</h2>
                   <span
                     className={`px-2 py-1 rounded-full text-sm ${
                       visitante.status === 'Entrada registrada'
@@ -75,22 +75,23 @@ const Visitantes = () => {
                         : 'bg-yellow-100 text-yellow-700'
                     }`}
                   >
-                    {visitante.status}
+                    {visitante.status || 'Estado desconocido'}
                   </span>
                 </div>
               </div>
               <div>
                 <p className="text-gray-600">
-                  Visitando a: <span className="font-semibold">{visitante.visiting}</span>
+                  Visitando a: <span className="font-semibold">{visitante.visiting || 'Desconocido'}</span>
                 </p>
                 <p className="text-gray-600">
-                  Departamento: <span className="font-semibold">{visitante.department}</span>
+                  Departamento: <span className="font-semibold">{visitante.department || 'Desconocido'}</span>
                 </p>
                 <p className="text-gray-600">
-                  Motivo de la visita: <span className="font-semibold">{visitante.purpose}</span>
+                  Motivo de la visita: <span className="font-semibold">{visitante.visitReason || 'No especificado'}</span>
                 </p>
                 <p className="text-gray-600">
-                  Hora de {visitante.status === 'Entrada registrada' ? 'entrada' : 'salida'}: <span className="font-semibold">{visitante.time}</span>
+                  Hora de {visitante.status === 'Entrada registrada' ? 'entrada' : 'salida'}:{' '}
+                  <span className="font-semibold">{visitante.time || 'No disponible'}</span>
                 </p>
               </div>
               <div className="flex justify-between items-center">
