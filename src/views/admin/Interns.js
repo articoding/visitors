@@ -92,9 +92,14 @@ const Practicantes = () => {
               <div>
                 <p className="text-gray-600">
                   Fecha de {practicante.status === 'Entrada registrada' ? 'entrada' : 'salida'}:{' '}
-                  <span className="font-semibold">{practicante.date || 'Fecha no disponible'}</span>
+                  <span className="font-semibold">
+                    {practicante.date ? practicante.date.toDate().toLocaleDateString('es-ES', {
+                      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                    }) : 'Fecha no disponible'}
+                  </span>
                 </p>
               </div>
+
               <div className="flex justify-between items-center">
                 {practicante.status === 'Entrada registrada' ? (
                   <button className="bg-red-100 text-red-500 py-2 px-4 rounded-lg">
