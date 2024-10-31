@@ -89,10 +89,6 @@ const Visitantes = () => {
                 <p className="text-gray-600">
                   Motivo de la visita: <span className="font-semibold">{visitante.visitReason || 'No especificado'}</span>
                 </p>
-                <p className="text-gray-600">
-                  Hora de {visitante.status === 'Entrada registrada' ? 'entrada' : 'salida'}:{' '}
-                  <span className="font-semibold">{visitante.time || 'No disponible'}</span>
-                </p>
               </div>
               <div className="flex justify-between items-center">
                 {visitante.status === 'Entrada registrada' ? (

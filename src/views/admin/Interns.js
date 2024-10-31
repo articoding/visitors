@@ -74,6 +74,7 @@ const Practicantes = () => {
                   className="h-24 w-24 rounded-full object-cover mr-4"
                 />
                 <div>
+                <span className="text-gray-500">Practicante</span>
                   <h2 className="text-xl font-bold text-gray-800">{practicante.name || 'Nombre no disponible'}</h2>
                   <span className="text-gray-500">{practicante.department || 'Departamento no especificado'}</span>
                   <div className="mt-2">
