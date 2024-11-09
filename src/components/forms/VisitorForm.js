@@ -63,7 +63,16 @@ const VisitorForm = () => {
           name="department"
           value={formData.department}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          style={{
+            WebkitAppearance: 'none', // Remove default Safari styling
+            MozAppearance: 'none', // Remove default Firefox styling
+            appearance: 'none', // Remove default browser styling
+            backgroundColor: 'white',
+            paddingRight: '1.5rem', // Ensure padding for consistency
+            fontSize: '1rem',
+            lineHeight: '1.5',
+          }}
           required
         >
           <option value="">Selecciona un departamento</option>
@@ -80,7 +89,16 @@ const VisitorForm = () => {
           name="visitReason"
           value={formData.visitReason}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          style={{
+            WebkitAppearance: 'none', // Remove default Safari styling
+            MozAppearance: 'none', // Remove default Firefox styling
+            appearance: 'none', // Remove default browser styling
+            backgroundColor: 'white',
+            paddingRight: '1.5rem', // Ensure padding for consistency
+            fontSize: '1rem',
+            lineHeight: '1.5',
+          }}
           required
         >
           <option value="">Selecciona un motivo</option>
@@ -89,7 +107,10 @@ const VisitorForm = () => {
           <option value="Otro">Otro</option>
         </select>
       </div>
-      <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-600 w-full">
+      <button
+        type="submit"
+        className="bg-green-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-600 w-full"
+      >
         Registrar
       </button>
     </form>

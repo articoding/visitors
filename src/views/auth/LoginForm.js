@@ -1,26 +1,24 @@
+// src/views/auth/LoginForm.js
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { auth } from '../../firebase/config.js'; // Adjust the path to the config file
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import logo from '../../assets/img/logo.png'; // Adjust the path to the logo image
+import logo from '../../assets/img/logo.png';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  // Initialize navigate hook
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log('User logged in successfully');
-      // Redirect to the dashboard page
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log('User logged in successfully:', userCredential.user);
       navigate('/admin/dashboard');
     } catch (error) {
-      setError('Invalid email or password');
+      setError('Correo electrónico o contraseña incorrectos');
       console.error('Login error:', error);
     }
   };

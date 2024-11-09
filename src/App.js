@@ -1,26 +1,51 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from './views/auth/LoginForm'; // Adjusted path to the LoginForm
+import LoginForm from './views/auth/LoginForm';
 import SignupForm from './views/auth/SignUpForm';
 import Dashboard from './views/admin/Dashboard';
 import Practicantes from './views/admin/Interns';
 import Visitantes from './views/admin/Visitors';
-import './index.css'; // Make sure to import the CSS file where the font is defined
-
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute component
+import './index.css'; // Import the CSS file where the font is defined
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} /> {/* Add Dashboard route */}
-        <Route path="/admin/practicantes" element={<Practicantes />} /> {/* Add Practicantes Route */}
-        <Route path="/admin/visitantes" element={<Visitantes />} /> {/* Add Visitantes Route */}
+    <AuthProvider> {/* Wrap the app with AuthProvider */}
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
 
-        {/* Add other routes like Dashboard or other views */}
-      </Routes>
-    </Router>
+          {/* Protected Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/practicantes"
+            element={
+              <ProtectedRoute>
+                <Practicantes />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/visitantes"
+            element={
+              <ProtectedRoute>
+                <Visitantes />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
